@@ -1,0 +1,38 @@
+@import "./buttons";
+@import "./variables";
+
+
+body{
+    padding: 15px;
+    font-family: 'Sora', sans-serif;
+    header{
+        background-color:#810000 ;
+        padding: 10px;
+        .header-tittle{
+            color:white;
+            margin: 0px;
+        }
+    }
+}
+header {
+    margin: 0px 100px;
+}
+main {
+    margin: 30px 100px;
+}
+.card {
+    border: 1px solid $color-azul;
+    margin: 0px;
+    border-radius: 15px;
+}
+
+table {
+    border-collapse: collapse; //elementos y cada uno se separa x1 borde
+}
+
+.title {
+    color: white;
+    background-color: $color-azul;
+    margin: 0px;
+    padding: 5px 15px;
+}

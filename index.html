@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./CSS/style.css"> -->
+    <link rel="stylesheet" href="./styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body onload="loadEvents()">
+    <header>
+        <h1 class="header-tittle">E-Restaurant</h1>
+    </header>
+    <main id="card-containter">
+        <section class="card">
+            <div class="tittle-section">
+                <h2 class="title">Mesas</h2>  
+            </div>
+            <div>
+                <table>
+                    <thead><!-- titulo tabla -->
+                        <th>Numero de Mesa</th>
+                        <th>Cuenta</th>
+                        <th>Cerrar Mesa</th>
+                    </thead>
+                    <tbody>
+                        <tr><!-- fila -->
+                            <td>1</td>
+                            <td>$500</td><!-- data -->
+                            <td><button class="button green">Cerrar</button></td>
+                        </tr>
+                        <tr><!-- fila -->
+                            <td>2</td>
+                            <td>$800</td><!-- data -->
+                            <td><button class="button green">Cerrar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="text"><button class="button blue">Agregar Mesa</button>
+                
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>
