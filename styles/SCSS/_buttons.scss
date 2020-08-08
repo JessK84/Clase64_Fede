@@ -1,0 +1,29 @@
+@import"../SCSS/abstract/variables";
+
+.button {
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 80px;
+    &.green {
+        background-color: $color-verde;
+    }
+    &.blue {
+        background-color:$color-celeste;
+        width: 120px;
+        height: 30px;
+        &.producto{
+            width: 130px;
+            padding: 2px;
+        }
+    }
+    
+}
+
+
+
+
+

@@ -3,12 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="./CSS/style.css"> -->
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/CSS/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="script.js"></script>
+    
 </head>
-<body onload="loadEvents()">
+<body onload="loadEvents()"> <!--onload="loadEvents()"-->
     <header>
         <h1 class="header-tittle">E-Restaurant</h1>
     </header>
@@ -17,31 +16,44 @@
             <div class="tittle-section">
                 <h2 class="title">Mesas</h2>  
             </div>
-            <div>
+            <div class="main-container">
                 <table>
                     <thead><!-- titulo tabla -->
                         <th>Numero de Mesa</th>
                         <th>Cuenta</th>
                         <th>Cerrar Mesa</th>
                     </thead>
-                    <tbody>
-                        <tr><!-- fila -->
-                            <td>1</td>
-                            <td>$500</td><!-- data -->
-                            <td><button class="button green">Cerrar</button></td>
-                        </tr>
-                        <tr><!-- fila -->
-                            <td>2</td>
-                            <td>$800</td><!-- data -->
-                            <td><button class="button green">Cerrar</button></td>
-                        </tr>
+                    <tbody id="lista-mesas">
                     </tbody>
                 </table>
-                <input type="text"><button class="button blue">Agregar Mesa</button>
-                
+                <div class="input-container">
+                    <input id="input-mesa" type="text" placeholder="Numero de mesa"><button id="agrega-mesa" class="button blue">Agregar Mesa</button>
+                </div>
+            </div>
+        </section>
+        <section class="card">
+            <div class="tittle-section">
+                <h2 class="title">Productos</h2>  
+            </div>
+            <div class="main-container">
+                <table>
+                    <thead><!-- titulo tabla -->
+                        <th>Id</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Eliminar</th>
+                    </thead>
+                    <tbody id="lista-productos">
+                    </tbody>
+                </table>
+                <div class="input-container">
+                    <input id="input-producto" type="text" placeholder="Producto">
+                    <input id="input-precio" type="number" placeholder="Precio">
+                    <button id="agrega-producto" class="button blue producto">Agregar Producto</button>
+                </div>
             </div>
         </section>
     </main>
-    
+    <script src="script.js"></script>
 </body>
 </html>

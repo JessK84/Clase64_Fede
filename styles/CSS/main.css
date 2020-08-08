@@ -1,0 +1,72 @@
+.button {
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 80px; }
+  .button.green {
+    background-color: #90be6d; }
+  .button.blue {
+    background-color: #0077b6;
+    width: 120px;
+    height: 30px; }
+    .button.blue.producto {
+      width: 130px;
+      padding: 2px; }
+
+body {
+  padding: 15px;
+  font-family: 'Sora', sans-serif; }
+  body header {
+    background-color: lightgrey;
+    padding: 25px; }
+    body header .header-tittle {
+      color: #111111;
+      margin: 0px 60px;
+      font-size: 20px; }
+
+main {
+  margin: 30px 100px; }
+
+.card {
+  border: 1px solid #0077b6;
+  margin: 0px;
+  border-radius: 6px;
+  margin-bottom: 50px; }
+
+div.main-container {
+  padding: 15px 0 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  div.main-container table {
+    border-collapse: collapse; }
+    div.main-container table tr.tr-style {
+      border-top: 1px solid lightgrey; }
+      div.main-container table tr.tr-style td {
+        padding: 2px 10px 0 10px;
+        font-size: 12px;
+        color: #2d363d; }
+    div.main-container table th {
+      padding: 2px 10px 0 10px;
+      font-size: 12px;
+      color: #2d363d;
+      padding-bottom: 10px; }
+  div.main-container .input-container {
+    padding: 20px; }
+    div.main-container .input-container input {
+      width: 130px;
+      height: 30px;
+      margin-right: 20px; }
+
+.title {
+  border-radius: 6px 6px 0px 0px;
+  color: white;
+  background-color: #0077b6;
+  margin: 0px;
+  padding: 5px 15px;
+  font-weight: 200;
+  font-size: 16px; }

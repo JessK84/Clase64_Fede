@@ -1,0 +1,72 @@
+@import "../SCSS/abstract/variables";
+@import"../SCSS/abstract/mixins";
+@import "../SCSS/buttons";
+
+
+body{
+    padding: 15px;
+    font-family: 'Sora', sans-serif;
+    header{
+        background-color:lightgrey ;
+        padding: 25px;
+        .header-tittle{
+            color:rgb(17, 17, 17);
+            margin: 0px 60px;
+            font-size: 20px;
+        }
+    }
+}
+
+main {
+    margin: 30px 100px;
+}
+.card {
+    border: 1px solid $color-celeste;
+    margin: 0px;
+    border-radius: 6px;
+    margin-bottom: 50px;
+}
+
+div.main-container{
+    padding: 15px 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    table {
+        border-collapse: collapse; //elementos y cada uno se separa x1 borde
+        tr.tr-style{
+            border-top: 1px solid lightgrey;
+            td{
+                @include generalesThTd;
+            }
+        }
+        
+        th{
+            @include generalesThTd;
+            padding-bottom:10px ;
+        }
+    }
+    .input-container{
+        padding: 20px;
+        input{
+            width: 130px;
+            height: 30px;
+            //border-radius: 2px;
+            margin-right: 20px;
+        }
+    }
+}
+
+
+
+
+.title {
+    border-radius:6px 6px 0px 0px ;
+    color: white;
+    background-color: $color-celeste;
+    margin: 0px;
+    padding: 5px 15px;
+    font-weight: 200;
+    font-size: 16px;
+}
