@@ -31,6 +31,7 @@ const agregarMesa = event =>{
     const tMesa = document.createElement("td");
     tMesa.innerText = input.value;
     const tPrecio = document.createElement("td");
+    //TODO : Hay que vincular el precio con el precio del objeto "mesa"
     tPrecio.innerText = "$600";
     const tButton = document.createElement("td");
     const button = document.createElement("button");
