@@ -51,16 +51,24 @@ const agregarMesa = event =>{
     button.addEventListener("click", cerrarMesa);
 }
 
-let nextId = 1;
+//let nextId = 1;
+//evento para (agregar Producto)
+
+
 const agregarProducto = () =>{
+    //get la tabla del HTML 
     const listaProd = document.querySelector("#lista-productos");
     const trow = document.createElement("tr");
     trow.className = "tr-style";
-    //agregando ID
-    const tId = document.createElement("td");
-    tId.innerText = `${nextId}`;
-    nextId++;
-    console.log(nextId);
+    //boton
+    const tButton = document.createElement("td");
+    const button = document.createElement("button");
+    button.innerText = "Eliminar";
+    button.className = "button green"
+    button.style.backgroundColor = "#da1e37";
+    
+    
+    //informacion que ingrese por html
     //input de producto
     const inputProducto = document.querySelector("#input-producto");
     const tProducto = document.createElement("td");
@@ -69,13 +77,18 @@ const agregarProducto = () =>{
     const inputPrecio = document.querySelector("#input-precio");
     const tPrecio = document.createElement("td");
     tPrecio.innerText = inputPrecio.value;
-    //boton
-    const tButton = document.createElement("td");
-    const button = document.createElement("button");
-    button.innerText = "Eliminar";
-    button.className = "button green"
-    button.style.backgroundColor = "#da1e37";
+    //celda del ID
+    const tId = document.createElement("td"); //esto si
+    tId.innerText = `${menu.nextId}`; //esto si va
 
+    //creo el producto
+    const nuevoProducto = new Producto(menu.nextId, inputProducto.value, inputPrecio.value);
+    menu.agregarProducto(nuevoProducto); //menu.lista=[nuevoProducto]
+    console.log(`El nuevo producto se ha agregado al menu.\n`);
+    console.log(`El menu es:`, menu.lista);
+    
+    
+    
     //agregar elementos
     trow.appendChild(tId);
     trow.appendChild(tProducto);
@@ -84,6 +97,7 @@ const agregarProducto = () =>{
     tButton.appendChild(button);
     listaProd.appendChild(trow);
 
+    //evento asignado al boton (eliminar)
     const eliminarProducto = () =>{
         trow.remove();
     }
