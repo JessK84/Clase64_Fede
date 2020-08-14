@@ -23,20 +23,33 @@
   * Por ultimo, puede hacerse con objetos o con clases.
 */
 
-const agregarMesa = event =>{
+const abrirMesa = event =>{
+    
+    //toma la tabla de la card "Mesas"
     const tbody = document.querySelector("#lista-mesas");
     const trow = document.createElement("tr");
     trow.className ="tr-style";
+    
+    //ingresa el nro de mesa por [Text de NroMesa]
     const input = document.querySelector("#input-mesa");
     const tMesa = document.createElement("td");
     tMesa.innerText = input.value;
+    
+    const newMesa = new Mesa(input.value);
+    mesasAbiertas.agregar(newMesa);
+
+    //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
-    //TODO : Hay que vincular el precio con el precio del objeto "mesa"
-    tPrecio.innerText = "$600";
+    tPrecio.innerText = "600"; //newMesa.cuentaMesa(); ! ! ! Empezar por aca
+    
+
+    //agrega boton cerrar
     const tButton = document.createElement("td");
     const button = document.createElement("button");
     button.innerText = "Cerrar";
     button.className ="button green";
+
+
 
     trow.appendChild(tMesa);
     trow.appendChild(tPrecio);
@@ -87,7 +100,7 @@ const agregarProducto = () =>{
     console.log(`El nuevo producto se ha agregado al menu.\n`);
     console.log(`El menu es:`, menu.lista);
     
-    
+    //TODO - hay que agregar los mismos elementos a la "Cargar Productos Mesa"
     
     //agregar elementos
     trow.appendChild(tId);
@@ -99,13 +112,17 @@ const agregarProducto = () =>{
 
     //evento asignado al boton (eliminar)
     const eliminarProducto = () =>{
+        menu.eliminarProducto(Number(tId.textContent));
         trow.remove();
+        //TODO
+        //self?
+        //menu.nextId--;
     }
 
     button.addEventListener("click", eliminarProducto);
 }
 
 const loadEvents = () =>{
-    document.querySelector("#agrega-mesa").addEventListener("click", agregarMesa);
+    document.querySelector("#abrir-mesa").addEventListener("click", abrirMesa);
     document.querySelector("#agrega-producto").addEventListener("click",agregarProducto);
 }
