@@ -11,7 +11,10 @@
     <header>
         <h1 class="header-tittle">E-Restaurant</h1>
     </header>
+    <!-------------------------M E S A S   A B I E R T A S---------------------------------->
     <main id="card-containter">
+        
+        
         <section class="card">
             <div class="tittle-section">
                 <h2 class="title">Mesas</h2>  
@@ -26,13 +29,37 @@
                     <tbody id="lista-mesas">
                     </tbody>
                 </table>
-                <div class="input-container">
-                    <input id="input-mesa" type="text" placeholder="Numero de mesa"><button id="abrir-mesa" class="button blue">Abrir Mesa</button>
-                </div>
+                <form class="input-container">
+                    <input id="input-mesa" type="text" placeholder="Numero de mesa">
+                    <button id="abrir-mesa" type="button" class="button blue">Abrir Mesa</button>
+                </form>
             </div>
         </section>
-
-
+        <!-------------------------C A R G A R   P R O D U C T O S-------------------------->
+        <section class="card">
+            <div class="tittle-section">
+                <h2 class="title">Cargar Producto a Mesa</h2>  
+            </div>
+            <div class="main-container">
+                <table>
+                    <thead><!-- titulo tabla -->
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                    </thead><!-- Tabla -->
+                    <tbody id="lista-mesas">
+                    </tbody>
+                </table>
+                <form class="input-container">
+                    <select id="elegirMesa" name="option-messas">
+                        <option value="-1" selected>Elegir mesa</option>
+                        <!--<option id="12" value="volvo">Mesa nro. ##</option>-->
+                        <!--<option id="1" value="volvo">Mesa nro. ##</option>-->
+                        <!--<option id="3" value="volvo">Mesa nro. ##</option>-->
+                    </select>
+                    <button id="abrir-mesa" type="button" class="button blue" style="width: 150px;">Agregar a Mesa</button>
+                </form>
+            </div>
+        </section>
         <!-------------------------P R O D U C T O S---------------------------------------->
         <section class="card">
             <div class="tittle-section">
@@ -49,13 +76,16 @@
                     <tbody id="lista-productos">
                     </tbody>
                 </table>
-                <div class="input-container">
+                <form class="input-container">
                     <input id="input-producto" type="text" placeholder="Producto">
                     <input id="input-precio" type="number" placeholder="Precio">
-                    <button id="agrega-producto" class="button blue producto">Agregar Producto</button>
-                </div>
+                    <button id="agrega-producto" type="button" class="button blue producto">Agregar Producto</button>
+                </form>
             </div>
         </section>
+    
+    
+    
     </main>
 
 

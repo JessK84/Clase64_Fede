@@ -57,10 +57,13 @@ div.main-container {
       padding-bottom: 10px; }
   div.main-container .input-container {
     padding: 20px; }
-    div.main-container .input-container input {
+    div.main-container .input-container input, div.main-container .input-container select {
       width: 130px;
       height: 30px;
       margin-right: 20px; }
+    div.main-container .input-container select {
+      background-color: lightgray;
+      color: #333; }
 
 .title {
   border-radius: 6px 6px 0px 0px;

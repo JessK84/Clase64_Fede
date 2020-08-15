@@ -3,12 +3,55 @@ function listaMesasAbiertas ()  {
 
     this.agregar = mesa => {
         if(!(mesa instanceof Mesa)) throw new Error(`La mesa no es una "Mesa"`);
-        if(this.lista.find(element => element.numero == mesa.numero)) throw new Error(`La mesa ya esta abierta.`);
-        this.lista.push(mesa)
+        this.validarMesaYaAbierta(mesa.numero);
+        this.lista.push(mesa);
+    }
+
+    this.eliminar = numMesa => {
+        this.lista = this.lista.filter(element => element.numero !== numMesa)
+    }
+
+    this.validarMesaYaAbierta = nroMesa => {
+        if(this.lista.find(element => element.numero == nroMesa)) {
+            alert(`La mesa ya esta abierta.`);
+            throw new Error(`La mesa ya esta abierta.`);
+        }
     }
 }
 
 const mesasAbiertas = new listaMesasAbiertas();
+
+class Mesa {
+    constructor(numero) {
+        this.numero = Number(numero);
+        this.listaConsumo = []
+    }
+
+    //TODO
+    agregarProducto (prod,cantidad) { //prod = ¿id? ¿nombre?
+        this.verificarProducto(prod);
+        this.listaConsumo.push(prod);
+    }
+
+    get cuentaMesa() {
+        if(this.listaConsumo.length===0) {
+            return 0;
+        } 
+    }
+
+    get cerrarMesa() {
+        //la reinicia : tomar nro de mesa e igualar a cero
+    }
+
+    //TODO
+    verificarProducto (prod) {
+        if(!prod instanceof Producto) throw new Error(`El producto consumido *no* es un producto`)
+
+    }
+}
+
+
+
 
 //const mesita = new Mesa(num);
 //mesita.agregarprod(papas) --> pushea a listaConsumo
@@ -35,31 +78,6 @@ function catalogoDeProductos () {
 
 const menu = new catalogoDeProductos();
 
-class Mesa {
-    constructor(numero) {
-        this.numero = numero;
-        this.listaConsumo = []
-    }
-
-    //TODO
-    agregarProducto (prod,cantidad) { //prod = ¿id? ¿nombre?
-        this.verificarProducto(prod);
-        this.listaConsumo.push(prod);
-    }
-
-    get cuentaMesa() {
-        //this.listaConsumo.forEach(suma => {
-        //})
-        //TODO : cuando la lista de consumo esta vacia debe dar cero.
-        return 0;
-    }
-
-    //TODO
-    verificarProducto (prod) {
-        if(!prod instanceof Producto) throw new Error(`El producto consumido *no* es un producto`)
-
-    }
-}
 
 
 class Producto {

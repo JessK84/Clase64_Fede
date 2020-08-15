@@ -22,9 +22,30 @@
   * 
   * Por ultimo, puede hacerse con objetos o con clases.
 */
-
-const abrirMesa = event =>{
+//esta funcion agrega la <option> al [select]
+const agregarOption = (nroMesa) => {
+    //nos traemos el selected de "Agregar Productos a Mesa"
+    const tSelected = document.querySelector("#elegirMesa");
+    const newOption = document.createElement("option");
     
+    //validamos q no este abierta
+    mesasAbiertas.validarMesaYaAbierta(nroMesa);
+
+    //generamos la nueva <option> en el [select]
+    newOption.innerText = `Mesa nro. ${nroMesa}`;
+    newOption.value = nroMesa;
+    newOption.id = `Mesa-${nroMesa}`; 
+    tSelected.appendChild(newOption);
+}
+
+const eliminarOption = (nroMesa) => {
+    const optionAeliminar = document.querySelector(`#Mesa-${nroMesa}`);
+    optionAeliminar.remove();
+}
+
+//El evento del boton: (abrir Mesa)
+const abrirMesa = event => {
+
     //toma la tabla de la card "Mesas"
     const tbody = document.querySelector("#lista-mesas");
     const trow = document.createElement("tr");
@@ -34,13 +55,14 @@ const abrirMesa = event =>{
     const input = document.querySelector("#input-mesa");
     const tMesa = document.createElement("td");
     tMesa.innerText = input.value;
+    agregarOption(input.value);
     
     const newMesa = new Mesa(input.value);
     mesasAbiertas.agregar(newMesa);
 
     //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
-    tPrecio.innerText = "600"; //newMesa.cuentaMesa(); ! ! ! Empezar por aca
+    tPrecio.innerText = newMesa.cuentaMesa; //el getter se utiliza como propiedad
     
 
     //agrega boton cerrar
@@ -56,18 +78,22 @@ const abrirMesa = event =>{
     tButton.appendChild(button);
     trow.appendChild(tButton);
     tbody.appendChild(trow);
-
+    
+    //evento para button (cerrar Mesa)
     const cerrarMesa = () =>{
+        mesasAbiertas.eliminar(Number(tMesa.textContent));
+        eliminarOption(tMesa.textContent);
         trow.remove();
     }
     
     button.addEventListener("click", cerrarMesa);
 }
 
+//Este es el evento para el boton (agregar a Mesa)
+const agregarAMesa = event => {
+}
 //let nextId = 1;
 //evento para (agregar Producto)
-
-
 const agregarProducto = () =>{
     //get la tabla del HTML 
     const listaProd = document.querySelector("#lista-productos");
@@ -101,7 +127,11 @@ const agregarProducto = () =>{
     console.log(`El menu es:`, menu.lista);
     
     //TODO - hay que agregar los mismos elementos a la "Cargar Productos Mesa"
-    
+        //agregarAProductosDisponibles(nuevoProducto);
+        //E M P E Z A R    P O R    A C A
+        //Hay que automatizar que al "agregarNuevoProducto" se actualice la
+        //lista de productos disponibles en "Cargar Productos a Mesa"
+
     //agregar elementos
     trow.appendChild(tId);
     trow.appendChild(tProducto);
@@ -118,9 +148,10 @@ const agregarProducto = () =>{
         //self?
         //menu.nextId--;
     }
-
     button.addEventListener("click", eliminarProducto);
+    
 }
+
 
 const loadEvents = () =>{
     document.querySelector("#abrir-mesa").addEventListener("click", abrirMesa);

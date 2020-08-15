@@ -49,11 +49,16 @@ div.main-container{
     }
     .input-container{
         padding: 20px;
-        input{
+        input, select{
             width: 130px;
             height: 30px;
             //border-radius: 2px;
             margin-right: 20px;
+        }
+
+        select{
+            background-color: lightgray;
+            color: #333;
         }
     }
 }
