@@ -30,7 +30,7 @@ class Mesa {
     //TODO
     agregarProducto (prod,cantidad) { //prod = ¿id? ¿nombre?
         this.verificarProducto(prod);
-        this.listaConsumo.push(prod);
+        this.listaConsumo.push([prod, cantidad]);
     }
 
     get cuentaMesa() {

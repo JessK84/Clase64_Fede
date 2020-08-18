@@ -60,11 +60,14 @@ div.main-container{
             background-color: lightgray;
             color: #333;
         }
-    }
+    }       
 }
 
-
-
+.input-cantidad {
+    width: 100px;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
 
 .title {
     border-radius:6px 6px 0px 0px ;

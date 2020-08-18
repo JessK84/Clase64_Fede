@@ -43,6 +43,54 @@ const eliminarOption = (nroMesa) => {
     optionAeliminar.remove();
 }
 
+// agregamos productosDisponibles 
+const agregaProductosDisponibles = (inputProd, idProd) => {
+    const tbody = document.querySelector(`#producto-disponibles`);
+    
+    //toma la tabla de la card "Cargar productos a mesas"
+    const trow = document.createElement("tr");
+    trow.className = 'tr-style';
+    trow.id = `Producto-${idProd}`;
+    console.log(`Es el ID de pordu disponible:` + trow.id)
+    const tProd = document.createElement('td');
+    tProd.innerText = inputProd; // toma la info del mismo inpout de agregar producto. // Agregó por parámetro CAFÉ, me lo toma como innerText
+    const tCantidad = document.createElement('td');
+    const inputCantidad = document.createElement('input');
+    inputCantidad.placeholder = "0"; 
+    inputCantidad.classList.add('input-cantidad');
+
+    trow.appendChild(tProd);
+    tCantidad.appendChild(inputCantidad);
+    trow.appendChild(tCantidad);
+    tbody.appendChild(trow);
+}
+
+
+const eliminarPoductoDisponnible = (idProd) => {
+    const productoAeliminar = document.querySelector(`#Producto-${idProd}`);
+    productoAeliminar.remove();
+}
+
+const agregarACuenta = () => {
+    const cantidadesProducto = document.querySelectorAll('.input-cantidad');
+    const listaDeProductos = menu.lista;
+    let mesasAbiertas = document.querySelectorAll('option');
+
+    for (let i = 0; i < mesasAbiertas.length; i++) {
+        if(mesasAbiertas[i].selected) {
+            for (let j = 0; j < listaMesasAbiertas.lista.length; j++) {
+                if(mesasAbiertas[i].value === listaMesasAbiertas.lista[j]){
+                   
+                    for (let k = 0; k < cantidadesProducto.length; k++) {
+                        if(cantidadesProducto[k].value !== 0) listaMesasAbiertas.lista[j].agregarProducto(listaDeProductos[k].value, cantidadesProducto[k].value);
+                        
+                    }
+            }
+        }      
+    }
+}
+
+
 //El evento del boton: (abrir Mesa)
 const abrirMesa = event => {
 
@@ -70,7 +118,6 @@ const abrirMesa = event => {
     const button = document.createElement("button");
     button.innerText = "Cerrar";
     button.className ="button green";
-
 
 
     trow.appendChild(tMesa);
@@ -111,7 +158,7 @@ const agregarProducto = () =>{
     //input de producto
     const inputProducto = document.querySelector("#input-producto");
     const tProducto = document.createElement("td");
-    tProducto.innerText = inputProducto.value;
+    tProducto.innerText = inputProducto.value; //se ingresa por parámentro en la línea 157
     //input de precio
     const inputPrecio = document.querySelector("#input-precio");
     const tPrecio = document.createElement("td");
@@ -127,10 +174,15 @@ const agregarProducto = () =>{
     console.log(`El menu es:`, menu.lista);
     
     //TODO - hay que agregar los mismos elementos a la "Cargar Productos Mesa"
+
         //agregarAProductosDisponibles(nuevoProducto);
         //E M P E Z A R    P O R    A C A
         //Hay que automatizar que al "agregarNuevoProducto" se actualice la
         //lista de productos disponibles en "Cargar Productos a Mesa"
+    
+    //ejectura función que agrega productosDisponibles a card 2
+    agregaProductosDisponibles(inputProducto.value, Number(tId.textContent)) // toma el input de línea 132 e id de 149
+    
 
     //agregar elementos
     trow.appendChild(tId);
@@ -144,7 +196,7 @@ const agregarProducto = () =>{
     const eliminarProducto = () =>{
         menu.eliminarProducto(Number(tId.textContent));
         trow.remove();
-        //TODO
+        eliminarPoductoDisponnible(Number(tId.textContent));
         //self?
         //menu.nextId--;
     }
