@@ -24,23 +24,45 @@ const mesasAbiertas = new listaMesasAbiertas();
 class Mesa {
     constructor(numero) {
         this.numero = Number(numero);
-        this.listaConsumo = []
+        this.listaConsumo = [];
     }
 
     //TODO
     agregarProducto (prod,cantidad) { //prod = ¿id? ¿nombre?
         this.verificarProducto(prod);
-        this.listaConsumo.push([prod, cantidad]);
+        let index = this.buscarIndexProducto(prod);
+        if(index === -1){
+            this.listaConsumo.push([prod, cantidad]);
+        }else{
+            this.listaConsumo[index][1] = this.listaConsumo[index][1] + cantidad; //sentencia con op matematica
+        };
+        //se genera un array de arrays 
+        
+        console.log("los productos se han agregado");
     }
 
-    get cuentaMesa() {
-        if(this.listaConsumo.length===0) {
+    get cuentaActualizada() {
+        if(this.listaConsumo.length===0){
             return 0;
-        } 
+        }else{
+            //buscar precios en (menu.lista[i].nombre == this.listaConsumo[i][0])
+            //if(menu.lista[i].nombre == this.listaConsumo[i][0])
+            this.listaConsumo.forEach(item =>{
+                //if(item[0] === menu.lista[])
+            })
+            //TODO: hacer un getter en clase producto 
+            //getPrecioProducto => return del precio del producto.
+            //con esa info se multiplica por la cantidad de lista consumo
+            //hacer que se sume todo el total de lo consumido
+        }
     }
 
     get cerrarMesa() {
         //la reinicia : tomar nro de mesa e igualar a cero
+    }
+
+    buscarIndexProducto(nombreProd){
+        return this.listaConsumo.findIndex(item => item[0] === nombreProd);
     }
 
     //TODO

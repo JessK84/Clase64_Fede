@@ -53,7 +53,7 @@ const agregaProductosDisponibles = (inputProd, idProd) => {
     trow.id = `Producto-${idProd}`;
     console.log(`Es el ID de pordu disponible:` + trow.id)
     const tProd = document.createElement('td');
-    tProd.innerText = inputProd; // toma la info del mismo inpout de agregar producto. // Agregó por parámetro CAFÉ, me lo toma como innerText
+    tProd.innerText = inputProd; // toma la info del mismo input de agregar producto. // Agregó por parámetro CAFÉ, me lo toma como innerText
     const tCantidad = document.createElement('td');
     const inputCantidad = document.createElement('input');
     inputCantidad.placeholder = "0"; 
@@ -74,17 +74,18 @@ const eliminarPoductoDisponnible = (idProd) => {
 const agregarACuenta = () => {
     const cantidadesProducto = document.querySelectorAll('.input-cantidad');
     const listaDeProductos = menu.lista;
-    let mesasAbiertas = document.querySelectorAll('option');
-
-    for (let i = 0; i < mesasAbiertas.length; i++) {
-        if(mesasAbiertas[i].selected) {
-            for (let j = 0; j < listaMesasAbiertas.lista.length; j++) {
-                if(mesasAbiertas[i].value === listaMesasAbiertas.lista[j]){
-                   
+    let mesasDropdown = document.querySelectorAll('option');//options de mesas abiertas
+    //recorremos la lista de mesas abiertas
+    for (let i = 0; i < mesasDropdown.length; i++) {
+        if(mesasDropdown[i].selected) {
+            console.log("he pasado el primer if");
+            for (let j = 0; j < mesasAbiertas.lista.length; j++) {
+                if(Number(mesasDropdown[i].value) === mesasAbiertas.lista[j].numero){
+                    console.log("he pasado el segundo if");
                     for (let k = 0; k < cantidadesProducto.length; k++) {
-                        if(cantidadesProducto[k].value !== 0) listaMesasAbiertas.lista[j].agregarProducto(listaDeProductos[k].value, cantidadesProducto[k].value);
-                        
+                        if(cantidadesProducto[k].value !== 0) mesasAbiertas.lista[j].agregarProducto(listaDeProductos[k].nombre, Number(cantidadesProducto[k].value));
                     }
+                }
             }
         }      
     }
@@ -110,7 +111,7 @@ const abrirMesa = event => {
 
     //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
-    tPrecio.innerText = newMesa.cuentaMesa; //el getter se utiliza como propiedad
+    tPrecio.innerText = newMesa.cuentaActualizada; //el getter se utiliza como propiedad
     
 
     //agrega boton cerrar
@@ -138,7 +139,10 @@ const abrirMesa = event => {
 
 //Este es el evento para el boton (agregar a Mesa)
 const agregarAMesa = event => {
+    agregarACuenta();
+    //actualizar cuenta
 }
+
 //let nextId = 1;
 //evento para (agregar Producto)
 const agregarProducto = () =>{
@@ -208,4 +212,5 @@ const agregarProducto = () =>{
 const loadEvents = () =>{
     document.querySelector("#abrir-mesa").addEventListener("click", abrirMesa);
     document.querySelector("#agrega-producto").addEventListener("click",agregarProducto);
+    document.querySelector("#agregar-mesa").addEventListener("click",agregarAMesa);
 }
