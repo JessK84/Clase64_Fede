@@ -3,6 +3,7 @@ function listaMesasAbiertas ()  {
 
     this.agregar = mesa => {
         if(!(mesa instanceof Mesa)) throw new Error(`La mesa no es una "Mesa"`);
+        if(typeof mesa.numero === "number") throw new Error(`No corresponde a una "Mesa"`); //sintaxis correcta
         this.validarMesaYaAbierta(mesa.numero);
         this.lista.push(mesa);
     }
@@ -60,10 +61,6 @@ class Mesa {
                 });
             });
             this.cuenta = totalCuenta;
-            //TODO: hacer un getter en clase producto 
-            //getPrecioProducto => return del precio del producto.
-            //con esa info se multiplica por la cantidad de lista consumo
-            //hacer que se sume todo el total de lo consumido
         }
     }
 

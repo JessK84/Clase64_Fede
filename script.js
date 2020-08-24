@@ -102,6 +102,7 @@ const abrirMesa = event => {
     const input = document.querySelector("#input-mesa");
     const tMesa = document.createElement("td");
     tMesa.innerText = input.value;
+    tMesa.id = `mesaTd-${input.value}`;
     agregarOption(input.value);
     
     const newMesa = new Mesa(input.value);
@@ -110,6 +111,7 @@ const abrirMesa = event => {
     //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
     tPrecio.innerText = newMesa.cuenta; //el getter se utiliza como propiedad
+    tPrecio.id = `precioTd-${input.value}`;
     
 
     //agrega boton cerrar
@@ -135,7 +137,7 @@ const abrirMesa = event => {
     button.addEventListener("click", cerrarMesa);
 }
 
-//Este es el evento para el boton (agregar a Mesa)
+//Este es el evento para el boton (agregar a Mesa)  [Mesa, Mesa]
 const agregarAMesa = event => {
     agregarACuenta();
     let mesasDropdown = document.querySelectorAll('option');
@@ -144,6 +146,8 @@ const agregarAMesa = event => {
             let index = mesasAbiertas.lista.findIndex(mesa=>mesa.numero === Number(option.value));
             mesasAbiertas.lista[index].cuentaActualizada
             console.log(`La mesa ${option.value}, en la posicion ${index} ha sido actualizada`);
+            let tdPrecio = document.querySelector(`#precioTd-${option.value}`);
+            tdPrecio.innerText = mesasAbiertas.lista[index].cuenta;
         };
     });
     //mesasAbiertas.lista[0].cuentaActualizada
