@@ -24,16 +24,19 @@ const mesasAbiertas = new listaMesasAbiertas();
 class Mesa {
     constructor(numero) {
         this.numero = Number(numero);
-        this.listaConsumo = [];
+        this.listaConsumo = []; // [[producto, cant],[producto, cant]]
+        this.cuenta = 0;
     }
 
     //TODO
     agregarProducto (prod,cantidad) { //prod = ¿id? ¿nombre?
         this.verificarProducto(prod);
+        // TODO: si la cantidad es cero no deberia agregarse
+
         let index = this.buscarIndexProducto(prod);
-        if(index === -1){
-            this.listaConsumo.push([prod, cantidad]);
-        }else{
+        if(index === -1 && cantidad !== 0){
+            this.listaConsumo.push([prod, cantidad]);//pusheamos un array
+        }else if(cantidad !== 0){
             this.listaConsumo[index][1] = this.listaConsumo[index][1] + cantidad; //sentencia con op matematica
         };
         //se genera un array de arrays 
@@ -45,11 +48,18 @@ class Mesa {
         if(this.listaConsumo.length===0){
             return 0;
         }else{
+            let totalCuenta = 0;
             //buscar precios en (menu.lista[i].nombre == this.listaConsumo[i][0])
-            //if(menu.lista[i].nombre == this.listaConsumo[i][0])
-            this.listaConsumo.forEach(item =>{
-                //if(item[0] === menu.lista[])
-            })
+
+            this.listaConsumo.forEach(item =>{//item[0]= nombre  // item[1] = cantidad
+                //recorro lista consumo y menu.lista
+                menu.lista.forEach(elem =>{
+                    if(item[0] === elem.nombre){
+                        totalCuenta += elem.precio * item[1];
+                    };
+                });
+            });
+            this.cuenta = totalCuenta;
             //TODO: hacer un getter en clase producto 
             //getPrecioProducto => return del precio del producto.
             //con esa info se multiplica por la cantidad de lista consumo
@@ -108,6 +118,10 @@ class Producto {
         this.nombre = nombreProducto;
         this.precio = Number(precio);
     }
+
+    // get precioProducto(){ ***podria usarse para obtener un precio total ***
+    //     return this.precio;
+    // }
 }
 
 

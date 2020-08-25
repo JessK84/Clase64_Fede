@@ -77,11 +77,9 @@ const agregarACuenta = () => {
     let mesasDropdown = document.querySelectorAll('option');//options de mesas abiertas
     //recorremos la lista de mesas abiertas
     for (let i = 0; i < mesasDropdown.length; i++) {
-        if(mesasDropdown[i].selected) {
-            console.log("he pasado el primer if");
+        if(mesasDropdown[i].selected) { 
             for (let j = 0; j < mesasAbiertas.lista.length; j++) {
                 if(Number(mesasDropdown[i].value) === mesasAbiertas.lista[j].numero){
-                    console.log("he pasado el segundo if");
                     for (let k = 0; k < cantidadesProducto.length; k++) {
                         if(cantidadesProducto[k].value !== 0) mesasAbiertas.lista[j].agregarProducto(listaDeProductos[k].nombre, Number(cantidadesProducto[k].value));
                     }
@@ -111,7 +109,7 @@ const abrirMesa = event => {
 
     //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
-    tPrecio.innerText = newMesa.cuentaActualizada; //el getter se utiliza como propiedad
+    tPrecio.innerText = newMesa.cuenta; //el getter se utiliza como propiedad
     
 
     //agrega boton cerrar
@@ -140,6 +138,15 @@ const abrirMesa = event => {
 //Este es el evento para el boton (agregar a Mesa)
 const agregarAMesa = event => {
     agregarACuenta();
+    let mesasDropdown = document.querySelectorAll('option');
+    mesasDropdown.forEach(option=>{ 
+        if(option.selected){
+            let index = mesasAbiertas.lista.findIndex(mesa=>mesa.numero === Number(option.value));
+            mesasAbiertas.lista[index].cuentaActualizada
+            console.log(`La mesa ${option.value}, en la posicion ${index} ha sido actualizada`);
+        };
+    });
+    //mesasAbiertas.lista[0].cuentaActualizada
     //actualizar cuenta
 }
 
@@ -174,8 +181,7 @@ const agregarProducto = () =>{
     //creo el producto
     const nuevoProducto = new Producto(menu.nextId, inputProducto.value, inputPrecio.value);
     menu.agregarProducto(nuevoProducto); //menu.lista=[nuevoProducto]
-    console.log(`El nuevo producto se ha agregado al menu.\n`);
-    console.log(`El menu es:`, menu.lista);
+ 
     
     //TODO - hay que agregar los mismos elementos a la "Cargar Productos Mesa"
 
