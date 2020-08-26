@@ -55,15 +55,22 @@ div.main-container {
       font-size: 12px;
       color: #2d363d;
       padding-bottom: 10px; }
-  div.main-container .input-container {
-    padding: 20px; }
-    div.main-container .input-container input, div.main-container .input-container select {
-      width: 130px;
-      height: 30px;
-      margin-right: 20px; }
-    div.main-container .input-container select {
-      background-color: lightgray;
-      color: #333; }
+
+.input-container {
+  padding: 20px; }
+  .input-container input, .input-container select {
+    width: 130px;
+    height: 30px;
+    margin-right: 20px; }
+  .input-container select {
+    background-color: lightgray;
+    color: #333; }
+
+.izquierda {
+  flex-direction: row; }
+  .izquierda .input-container {
+    margin-bottom: 0;
+    padding-bottom: 0; }
 
 .input-cantidad {
   width: 100px;
@@ -78,5 +85,3 @@ div.main-container {
   padding: 5px 15px;
   font-weight: 200;
   font-size: 16px; }
-
-/*# sourceMappingURL=main.css.map */

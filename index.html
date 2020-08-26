@@ -83,7 +83,37 @@
                 </form>
             </div>
         </section>
-    
+        <!----------------------------CONSUMO X MESA------------------------------------->
+        <section class="card">
+            <div class="tittle-section">
+                <h2 class="title">Consumo por mesa</h2>  
+            </div>
+            <div class="izquierda">
+                <form class="input-container">
+                    <select id="elegirMesa-consumo" name="option-mesas">
+                        <option value="-1" selected>Elegir mesa</option>
+                        <!--<option id="12" value="volvo">Mesa nro. ##</option>-->
+                        <!--<option id="1" value="volvo">Mesa nro. ##</option>-->
+                        <!--<option id="3" value="volvo">Mesa nro. ##</option>-->
+                    </select>
+                </form>
+            </div>
+
+            <div class="main-container">
+                
+                <table>
+                    <thead><!-- titulo tabla -->
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Eliminar</th>
+                    </thead>
+                    <!--lista tabla-->
+                    <tbody id="lista-consumo">
+                    </tbody>
+                </table>
+            </div>
+        </section>
     
     
     </main>

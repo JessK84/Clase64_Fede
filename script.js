@@ -24,10 +24,15 @@
 */
 //esta funcion agrega la <option> al [select]
 const agregarOption = (nroMesa) => {
+    if(isNaN(nroMesa)) throw new Error(`Introducir un numero`);
     //nos traemos el selected de "Agregar Productos a Mesa"
     const tSelected = document.querySelector("#elegirMesa");
     const newOption = document.createElement("option");
     
+    //nos traemos el selectes de "consumo por mesa"
+    const tSelectedConsumo = document.querySelector("#elegirMesa-consumo");
+    const newOptionConsumo = document.createElement("option");
+
     //validamos q no este abierta
     mesasAbiertas.validarMesaYaAbierta(nroMesa);
 
@@ -36,6 +41,12 @@ const agregarOption = (nroMesa) => {
     newOption.value = nroMesa;
     newOption.id = `Mesa-${nroMesa}`; 
     tSelected.appendChild(newOption);
+
+    //generamos la nueva <option> en el [select de consumo]
+    newOptionConsumo.innerText = `Mesa nro. ${nroMesa}`;
+    newOptionConsumo.value = nroMesa;
+    newOptionConsumo.id = `consumo-mesa-${nroMesa}`; 
+    tSelectedConsumo.appendChild(newOptionConsumo);
 }
 
 const eliminarOption = (nroMesa) => {
@@ -106,6 +117,7 @@ const abrirMesa = event => {
     agregarOption(input.value);
     
     const newMesa = new Mesa(input.value);
+
     mesasAbiertas.agregar(newMesa);
 
     //crea la celda destinada al precio
@@ -185,16 +197,6 @@ const agregarProducto = () =>{
     //creo el producto
     const nuevoProducto = new Producto(menu.nextId, inputProducto.value, inputPrecio.value);
     menu.agregarProducto(nuevoProducto); //menu.lista=[nuevoProducto]
- 
-    
-    //TODO - hay que agregar los mismos elementos a la "Cargar Productos Mesa"
-
-        //agregarAProductosDisponibles(nuevoProducto);
-        //E M P E Z A R    P O R    A C A
-        //Hay que automatizar que al "agregarNuevoProducto" se actualice la
-        //lista de productos disponibles en "Cargar Productos a Mesa"
-    
-    //ejectura función que agrega productosDisponibles a card 2
     agregaProductosDisponibles(inputProducto.value, Number(tId.textContent)) // toma el input de línea 132 e id de 149
     
 
@@ -218,6 +220,10 @@ const agregarProducto = () =>{
     
 }
 
+
+const mostrarConsumo = event =>{
+
+}
 
 const loadEvents = () =>{
     document.querySelector("#abrir-mesa").addEventListener("click", abrirMesa);

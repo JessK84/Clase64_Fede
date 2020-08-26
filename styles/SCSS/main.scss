@@ -47,21 +47,30 @@ div.main-container{
             padding-bottom:10px ;
         }
     }
-    .input-container{
-        padding: 20px;
-        input, select{
-            width: 130px;
-            height: 30px;
-            //border-radius: 2px;
-            margin-right: 20px;
-        }
-
-        select{
-            background-color: lightgray;
-            color: #333;
-        }
-    }       
+    
 }
+.input-container{
+    padding: 20px;
+    input, select{
+        width: 130px;
+        height: 30px;
+        //border-radius: 2px;
+        margin-right: 20px;
+    }
+   
+    select{
+        background-color: lightgray;
+        color: #333;
+    }
+}
+
+.izquierda{
+    flex-direction: row;
+    .input-container{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}       
 
 .input-cantidad {
     width: 100px;

@@ -3,7 +3,6 @@ function listaMesasAbiertas ()  {
 
     this.agregar = mesa => {
         if(!(mesa instanceof Mesa)) throw new Error(`La mesa no es una "Mesa"`);
-        if(typeof mesa.numero === "number") throw new Error(`No corresponde a una "Mesa"`); //sintaxis correcta
         this.validarMesaYaAbierta(mesa.numero);
         this.lista.push(mesa);
     }
