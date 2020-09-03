@@ -36,19 +36,22 @@ const agregarOption = (nroMesa) => {
     //validamos q no este abierta
     mesasAbiertas.validarMesaYaAbierta(nroMesa);
 
-    //generamos la nueva <option> en el [select]
+    //generamos la nueva <option> en el [select de cargar]
     newOption.innerText = `Mesa nro. ${nroMesa}`;
     newOption.value = nroMesa;
+    newOption.className = `cargar`
     newOption.id = `Mesa-${nroMesa}`; 
     tSelected.appendChild(newOption);
 
     //generamos la nueva <option> en el [select de consumo]
     newOptionConsumo.innerText = `Mesa nro. ${nroMesa}`;
     newOptionConsumo.value = nroMesa;
-    newOptionConsumo.id = `consumo-mesa-${nroMesa}`; 
+    newOptionConsumo.className = `consumo`
+    newOptionConsumo.id =`consumo-mesa-${nroMesa}`; 
     tSelectedConsumo.appendChild(newOptionConsumo);
 }
 
+//TODO-02.09: hay que  hacer un "eliminarOptionConsumo" para (Eliminar) en -Mesas Abiertas-
 const eliminarOption = (nroMesa) => {
     const optionAeliminar = document.querySelector(`#Mesa-${nroMesa}`);
     optionAeliminar.remove();
@@ -62,7 +65,6 @@ const agregaProductosDisponibles = (inputProd, idProd) => {
     const trow = document.createElement("tr");
     trow.className = 'tr-style';
     trow.id = `Producto-${idProd}`;
-    console.log(`Es el ID de pordu disponible:` + trow.id)
     const tProd = document.createElement('td');
     tProd.innerText = inputProd; // toma la info del mismo input de agregar producto. // Agregó por parámetro CAFÉ, me lo toma como innerText
     const tCantidad = document.createElement('td');
@@ -76,7 +78,6 @@ const agregaProductosDisponibles = (inputProd, idProd) => {
     tbody.appendChild(trow);
 }
 
-
 const eliminarPoductoDisponnible = (idProd) => {
     const productoAeliminar = document.querySelector(`#Producto-${idProd}`);
     productoAeliminar.remove();
@@ -85,7 +86,7 @@ const eliminarPoductoDisponnible = (idProd) => {
 const agregarACuenta = () => {
     const cantidadesProducto = document.querySelectorAll('.input-cantidad');
     const listaDeProductos = menu.lista;
-    let mesasDropdown = document.querySelectorAll('option');//options de mesas abiertas
+    let mesasDropdown = document.querySelectorAll('.cargar');//options de mesas abiertas
     //recorremos la lista de mesas abiertas
     for (let i = 0; i < mesasDropdown.length; i++) {
         if(mesasDropdown[i].selected) { 
@@ -103,7 +104,7 @@ const agregarACuenta = () => {
 
 //El evento del boton: (abrir Mesa)
 const abrirMesa = event => {
-
+    
     //toma la tabla de la card "Mesas"
     const tbody = document.querySelector("#lista-mesas");
     const trow = document.createElement("tr");
@@ -117,22 +118,22 @@ const abrirMesa = event => {
     agregarOption(input.value);
     
     const newMesa = new Mesa(input.value);
-
+    
     mesasAbiertas.agregar(newMesa);
-
+    
     //crea la celda destinada al precio
     const tPrecio = document.createElement("td");
     tPrecio.innerText = newMesa.cuenta; //el getter se utiliza como propiedad
     tPrecio.id = `precioTd-${input.value}`;
     
-
+    
     //agrega boton cerrar
     const tButton = document.createElement("td");
     const button = document.createElement("button");
     button.innerText = "Cerrar";
     button.className ="button green";
-
-
+    
+    
     trow.appendChild(tMesa);
     trow.appendChild(tPrecio);
     tButton.appendChild(button);
@@ -152,7 +153,7 @@ const abrirMesa = event => {
 //Este es el evento para el boton (agregar a Mesa)  [Mesa, Mesa]
 const agregarAMesa = event => {
     agregarACuenta();
-    let mesasDropdown = document.querySelectorAll('option');
+    let mesasDropdown = document.querySelectorAll('.cargar');
     mesasDropdown.forEach(option=>{ 
         if(option.selected){
             let index = mesasAbiertas.lista.findIndex(mesa=>mesa.numero === Number(option.value));
@@ -193,13 +194,13 @@ const agregarProducto = () =>{
     //celda del ID
     const tId = document.createElement("td"); //esto si
     tId.innerText = `${menu.nextId}`; //esto si va
-
+    
     //creo el producto
     const nuevoProducto = new Producto(menu.nextId, inputProducto.value, inputPrecio.value);
     menu.agregarProducto(nuevoProducto); //menu.lista=[nuevoProducto]
     agregaProductosDisponibles(inputProducto.value, Number(tId.textContent)) // toma el input de línea 132 e id de 149
     
-
+    
     //agregar elementos
     trow.appendChild(tId);
     trow.appendChild(tProducto);
@@ -207,7 +208,7 @@ const agregarProducto = () =>{
     trow.appendChild(tButton);
     tButton.appendChild(button);
     listaProd.appendChild(trow);
-
+    
     //evento asignado al boton (eliminar)
     const eliminarProducto = () =>{
         menu.eliminarProducto(Number(tId.textContent));
@@ -220,9 +221,60 @@ const agregarProducto = () =>{
     
 }
 
+const mostrarConsumoTabla = (fila_consumo) => {
+    //traemos el tBody referente a la tabla de "consumo"
+    const tBody = document.querySelector("#lista-consumo");
+    //creamos los elementos q vamos a appendchilearle
+    const trow = document.createElement("tr");
+    trow.classList.add("tr-style", "consumo_td");
+    const tProd = document.createElement('td');
+    const tCant = document.createElement('td');
+    const tPrecio = document.createElement('td');
+    //boton
+    const tButton = document.createElement("td");
+    const button = document.createElement("button");
+    button.innerText = "Eliminar";
+    button.className = "button green"
+    button.style.backgroundColor = "#da1e37";
+    tButton.appendChild(button);
+    
+    //asignamos los datos a cada td
+    tProd.innerText = fila_consumo[0]; 
+    tCant.innerText = fila_consumo[1];
+    menu.lista.forEach(prod => {
+        //TODO-02.09: puede tirar un error si no encuentra el producto.
+        if(prod.nombre === fila_consumo[0]) tPrecio.innerText =  prod.precio*fila_consumo[1];
+    });
+    
+    
+    trow.appendChild(tProd);
+    trow.appendChild(tCant);
+    trow.appendChild(tPrecio);
+    trow.appendChild(tButton);
+    tBody.appendChild(trow);
+}
 
+
+
+//TODO-02.09: Tiene que borrar el consumo cuando se apreta el boton (Eliminar)
 const mostrarConsumo = event =>{
-
+    //poner la tabla en vacio
+    const refreshAll = document.querySelectorAll(`.consumo_td`);
+    refreshAll.forEach(item => item.remove());
+    //hago el consumo de nuevo
+    let mesasDropdown = document.querySelectorAll('.consumo');//options de mesas abiertas
+    //recorremos la lista de mesas abiertas
+    for (let i = 0; i < mesasDropdown.length; i++) {
+         if(mesasDropdown[i].selected) { 
+            mesasAbiertas.lista.forEach(item => {
+                if(Number(mesasDropdown[i].value) === item.numero) {
+                    for (let j=0; j<item.listaConsumo.length; j++) {
+                        mostrarConsumoTabla(item.listaConsumo[j]);
+                    }
+                }
+            })
+         }      
+     }
 }
 
 const loadEvents = () =>{
